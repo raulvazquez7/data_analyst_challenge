@@ -8,22 +8,22 @@ import os
 ## 0. Set variables and auth
 
 # Telegram API credentials
-api_id = 'INSERT YOUR TELEGRAM API ID HERE'
-api_hash = 'INSERT YOUR TELEGRAM API BASH HERE'
+api_id = 'YOUR_API_ID'
+api_hash = 'YOUR_API_HASH'
+
+# Telegram channel username
+channel_username = 'bitpanda_de'  # or your target channel
+
+# Google Sheets credentials file
+google_creds_file = 'service_account_key.json'
+
+# Google Sheets spreadsheet ID
+spreadsheet_id = 'YOUR_SPREADSHEET_ID'
+
+client = TelegramClient(session_name, api_id, api_hash)
 
 # Session name
 session_name = 'btc_extractor_session'
-
-# Telegram channel username
-channel_username = 'bitpanda_de'
-
-# Google Sheets credentials file
-google_creds_file = 'INSERT YOUR PATH TO SERVICE ACCOUNT'
-
-# Google Sheets spreadsheet ID
-spreadsheet_id = 'INSERT YOUR SPREADSHEET ID HERE'
-
-client = TelegramClient(session_name, api_id, api_hash)
 
 ## 1. Set functions
 
