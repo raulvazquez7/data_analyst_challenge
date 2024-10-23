@@ -65,14 +65,41 @@ python extract_btc_messages.py
 - store_messages(): Appends the fetched messages to the Google Sheet.
 - main(): Orchestrates the execution flow.
 
-## Automation Purpose
-To automate the daily update of your Google Sheet with new messages containing “BTC” using Cloud Run, you can leverage Google’s serverless infrastructure to run your script on a scheduled basis. Here’s how the process would work:
+# Automation Purpose
+## Proposal for Automating Daily Updates of Google Sheets with “BTC” Messages from Telegram
 
-1. Containerize Your Script: Package your existing Python script into a Docker container. This involves creating a Docker image that includes your script and all its dependencies, ensuring it can run in any environment without modification.
-2. Deploy to Cloud Run: Upload your container image to Google Container Registry (Artifact Registry) and deploy it to Cloud Run. Cloud Run will host your containerized application and manage the underlying infrastructure, scaling automatically as needed.
-3. Set Up Cloud Scheduler: Configure Cloud Scheduler to trigger your Cloud Run service at a specific time every day. Cloud Scheduler can send an HTTP request to your Cloud Run endpoint, effectively invoking your script on a daily schedule.
-4. Manage Secrets and Credentials: Use Google Secret Manager to securely store sensitive information like your Telegram API credentials and Google Sheets API keys. Configure your Cloud Run service to access these secrets at runtime without hardcoding them into your script.
-5. Configure Permissions: Ensure that the service account associated with your Cloud Run service has the necessary permissions to access the Google Sheets API and Secret Manager. This involves assigning appropriate IAM roles to the service account.
-6. Logging and Monitoring: Utilize Google Cloud’s logging and monitoring tools to keep track of your script’s executions. Cloud Logging can capture logs from your script, and you can set up alerts for failures or anomalies.
+I would like to recommend automating the process of updating our Google Sheet with new messages containing “BTC” from the Telegram channel by utilizing Google Cloud Run. This solution offers an efficient, scalable, and secure way to run our existing script without the need for managing underlying infrastructure.
 
-By implementing this setup, your script will automatically run daily in a secure and scalable environment, fetching new “BTC” messages from the Telegram channel and appending them to your Google Sheet without any manual intervention.
+### Why Cloud Run?
+
+Cloud Run is a serverless compute platform provided by Google Cloud that allows us to run stateless containers in a fully managed environment. It’s an excellent choice for automating tasks when the client does not utilize platforms like Databricks. By deploying our script to Cloud Run, we can:
+
+- Automate Execution: Schedule the script to run daily without manual intervention.
+- Ensure Scalability: Automatically handle varying workloads without the need for capacity planning.
+- Enhance Security: Securely manage credentials and sensitive data using Google Cloud’s security features.
+- Reduce Operational Overhead: Eliminate the need to manage servers or infrastructure.
+
+### Proposed Process:
+
+1. Containerize the Script: Package the existing Python script into a Docker container, ensuring all dependencies are included.
+2. Deploy to Cloud Run: Upload the container image to Google Container Registry and deploy it to Cloud Run. This makes the script accessible as a web service that can be triggered via HTTP requests.
+3. Schedule Execution with Cloud Scheduler: Use Google Cloud Scheduler to invoke the Cloud Run service at a specified time each day. This effectively automates the daily execution of the script.
+4. Manage Secrets Securely: Utilize Google Secret Manager to store sensitive information like Telegram API credentials and Google Sheets API keys. Configure the Cloud Run service to access these secrets securely at runtime.
+5. Configure Permissions: Assign appropriate IAM roles to the Cloud Run service account to ensure it has the necessary permissions to access Google Sheets and Secret Manager.
+6. Monitoring and Logging: Leverage Google Cloud’s monitoring tools to track script executions, capture logs, and set up alerts for any failures or anomalies.
+
+### Alternative with Databricks:
+
+If Databricks is part of our technology stack, we can automate the process directly within a Databricks notebook. Databricks offers robust scheduling and integration capabilities, allowing us to:
+
+- Embed the Script in a Notebook: Run the Python script within a Databricks notebook for seamless integration with existing workflows.
+- Use Databricks Jobs: Schedule the notebook to run daily using Databricks’ job scheduling feature.
+- Centralize Data Processing: Benefit from Databricks’ unified analytics platform if we are already using it for other data tasks.
+
+### Conclusion:
+
+Automating this process with Cloud Run is a highly effective solution when Databricks is not in use. It streamlines the workflow, ensures our Google Sheet is updated daily with new “BTC” messages, and reduces manual effort. Should we be utilizing Databricks, integrating the automation within a notebook would be equally beneficial.
+
+This approach not only enhances efficiency but also aligns with best practices for security and scalability. I recommend proceeding with the Cloud Run implementation to achieve a robust and maintainable automation process.
+
+By adopting this solution, we can ensure our data is consistently up-to-date, allowing for timely insights and decision-making.
