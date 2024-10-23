@@ -1,4 +1,4 @@
 # Business Monitoring Challenge
 This repository will contain two main folders, each containing the content that solves both exercises proposed in the technical challenge.
 
-To work on the queries I have done it in bigquery in Google Cloud Platform, uploading the csv in the environment to be able to work and test. The syntax used is the standard SQL accepted by bigquery.
+To develop and test the queries, I worked in BigQuery by uploading the CSV file into the environment. This approach allowed me to efficiently work and perform tests. Consequently, the syntax used is the standard SQL supported by BigQuery.
