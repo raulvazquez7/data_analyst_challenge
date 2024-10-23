@@ -2,6 +2,9 @@
 
 This script fetches messages containing the keyword ‘btc’ from a specified Telegram channel and stores them in a Google Sheets spreadsheet. It is designed to retrieve messages from the previous day and append them to the sheet for easy tracking.
 
+[See python script here!](https://github.com/raulvazquez7/data_analyst_challenge/blob/main/Part2/extract_btc_messages.py)
+[See csv result here!](https://github.com/raulvazquez7/data_analyst_challenge/blob/main/Part2/bitpanda_de_btc_messages.csv)
+
 ## Overview
 - Fetches messages from Telegram: Connects to a Telegram channel and retrieves messages containing ‘btc’ from the previous day.
 - Stores messages in Google Sheets: Appends the fetched messages to a specified Google Sheets document.
