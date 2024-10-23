@@ -65,3 +65,14 @@ python extract_btc_messages.py
 - store_messages(): Appends the fetched messages to the Google Sheet.
 - main(): Orchestrates the execution flow.
 
+## Automation Purpose
+To automate the daily update of your Google Sheet with new messages containing “BTC” using Cloud Run, you can leverage Google’s serverless infrastructure to run your script on a scheduled basis. Here’s how the process would work:
+
+1. Containerize Your Script: Package your existing Python script into a Docker container. This involves creating a Docker image that includes your script and all its dependencies, ensuring it can run in any environment without modification.
+2. Deploy to Cloud Run: Upload your container image to Google Container Registry (Artifact Registry) and deploy it to Cloud Run. Cloud Run will host your containerized application and manage the underlying infrastructure, scaling automatically as needed.
+3. Set Up Cloud Scheduler: Configure Cloud Scheduler to trigger your Cloud Run service at a specific time every day. Cloud Scheduler can send an HTTP request to your Cloud Run endpoint, effectively invoking your script on a daily schedule.
+4. Manage Secrets and Credentials: Use Google Secret Manager to securely store sensitive information like your Telegram API credentials and Google Sheets API keys. Configure your Cloud Run service to access these secrets at runtime without hardcoding them into your script.
+5. Configure Permissions: Ensure that the service account associated with your Cloud Run service has the necessary permissions to access the Google Sheets API and Secret Manager. This involves assigning appropriate IAM roles to the service account.
+6. Logging and Monitoring: Utilize Google Cloud’s logging and monitoring tools to keep track of your script’s executions. Cloud Logging can capture logs from your script, and you can set up alerts for failures or anomalies.
+
+By implementing this setup, your script will automatically run daily in a secure and scalable environment, fetching new “BTC” messages from the Telegram channel and appending them to your Google Sheet without any manual intervention.
